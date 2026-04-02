@@ -1,0 +1,12 @@
+---
+description: Use Relern for live academic data and this repo for durable working memory.
+globs:
+  - "**/*"
+alwaysApply: true
+---
+
+- Use Relern to retrieve live course context from Canvas.
+- Treat this repository as a writable workspace for notes, plans, summaries, and drafts.
+- Do not assume this repo contains current official deadlines or requirements unless they were just verified.
+- Before taking write actions that affect the student's real accounts or coursework, ask for explicit confirmation.
+- When useful, save durable outputs into structured files rather than leaving them only in chat.
