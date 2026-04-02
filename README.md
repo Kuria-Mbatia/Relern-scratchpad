@@ -26,18 +26,22 @@ Relern and Canvas remain the source of truth for live academic data. This repo i
 
 ## Agent operating rules
 
-1. At the start of any task, pull the latest GitHub state before doing anything else.
+1. At the start of any task, sync the latest GitHub state before doing anything else.
 2. Check the current latest notes, planner items, and task artifacts so you do not add updates to stale data.
 3. Do your work locally in the appropriate workspace folders.
-4. If another model pushed overlapping changes, pull, merge, and resolve conflicts instead of overwriting their work.
-5. Before pushing, reconcile split or conflicting edits so the repo contains a merged view of all useful work.
-6. When a task item is done, push the latest state to GitHub.
+4. Prefer new handoff files or clearly scoped updates so concurrent agents are less likely to collide on the same text.
+5. If another model pushed overlapping changes, pull, merge, and resolve conflicts instead of overwriting their work.
+6. Before pushing, reconcile split or conflicting edits so the repo contains a merged view of all useful work.
+7. Never force-push or discard another model's valid work just to get a push through.
+8. When a task item is done, push the latest state to GitHub.
 
 The key rule is coordination, not overwrite. If Codex, Cursor, and Claude all work concurrently, each model should pull first, merge thoughtfully, and then push a combined result rather than replacing another model's updates.
 
 ## Human handoff
 
 Models should leave short human-readable notes in `humans/` when they complete meaningful work or need to preserve session context for a person.
+
+Use the naming pattern `humans/YYYY-MM-DD-model-task.md`.
 
 Examples:
 - what task was completed
@@ -50,13 +54,18 @@ If Codex finishes a task, it should add a note for the human with the task name 
 
 ## Recommended workflow
 
-1. Pull the latest repo state from GitHub.
-2. Use Relern to fetch live course context.
-3. Review the current repo contents so you are building on the newest task state.
+1. Start with a clean working tree and sync the latest remote state.
+2. Review the current repo contents so you are building on the newest task state.
+3. Use Relern to fetch live course context.
 4. Save useful summaries and outputs here.
 5. Keep official facts linked back to their source course object.
 6. Add a human handoff note in `humans/` when appropriate.
-7. Pull again before pushing if needed, merge conflicts carefully, and then push the combined latest state.
+7. Commit your work locally.
+8. Fetch the latest remote state again before pushing.
+9. If remote changes appeared, merge or rebase carefully and resolve conflicts without dropping useful work from other agents.
+10. Push only after local work and remote work are fully combined.
+
+See `prompts/agent-checklist.md` for the operational checklist agents should follow.
 
 ## Folder layout
 
